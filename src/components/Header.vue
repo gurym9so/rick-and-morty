@@ -1,3 +1,38 @@
 <template>
-  <p>Header</p>
+  <div class="header">
+    <div class="header_wrapper">
+      <router-link to="/" class="logo">Logo</router-link>
+      <div class="header_content">
+        <div>About</div>
+        <div>Filtered</div>
+      </div>
+    </div>
+  </div>
 </template>
+
+<style>
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgray;
+  min-height: 50px;
+}
+.header_wrapper {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.logo {
+  color: black;
+  text-decoration: none;
+}
+.header_content {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+</style>

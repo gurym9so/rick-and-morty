@@ -1,15 +1,21 @@
 <template>
-  <Header />
-  <router-view />
-  <Footer />
+  <div class="md-body">
+    <Header />
+    <router-view />
+  </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
-import Footer from "./components/Footer.vue";
 export default {
-  components: { Header, Footer },
+  components: { Header },
 };
 </script>
 
-<style></style>
+<style>
+.md-body {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+</style>
