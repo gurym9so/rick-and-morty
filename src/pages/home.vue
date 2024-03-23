@@ -4,7 +4,7 @@
       <div class="start_wrapper">
         <div class="body_start">The Rick and Morty API</div>
       </div>
-      <Card />
+      <Card :cardInfo="cardInfo" />
     </div>
   </div>
 </template>
@@ -13,6 +13,30 @@
 import Card from "@/components/Card.vue";
 export default {
   components: { Card },
+  data() {
+    return {
+      cardInfo: [
+        {
+          id: "1",
+          name: "Mr poopybutthole",
+          status: "Alive",
+          species: "Gumanoid",
+          location: "Earth",
+          firstSeen: "Season 1",
+          image: "http://surl.li/rssin",
+        },
+        {
+          id: "2",
+          name: "Squanchy",
+          status: "Alive",
+          species: "Gumanoid",
+          location: "Earth",
+          firstSeen: "Season 2",
+          image: "http://surl.li/rsslm",
+        },
+      ],
+    };
+  },
 };
 </script>
 

@@ -4,7 +4,6 @@
       <router-link to="/" class="logo">Logo</router-link>
       <div class="header_content">
         <router-link to="/about" class="logo">About</router-link>
-        <div>Filtered</div>
       </div>
     </div>
   </div>

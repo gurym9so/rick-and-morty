@@ -1,39 +1,35 @@
 <template>
-<div class="body_content">
+<div class="card_main">
+  <div class="body_content" v-for="info in cardInfo">
     <div class="card">
       <div class="card_logo">
-        <img src="http://surl.li/rssin" class="card_photo"></img>
+        <img :src="info.image" class="card_photo"></img>
       </div>
       <div class="card_info">
-        <div>Mr poopybutthole</div>
-        <div>Alive - Gumanoid</div>
+        <div>{{info.name}}</div>
+        <div>{{ info.status }} - {{ info.species }}</div>
         <br/>
         <div>Last known location:</div>
-        <div>Earth</div>
+        <div>{{ info.location }}</div>
         <br/>
         <div>First seen in:</div>
-        <div>Season 1</div>
+        <div>{{ info.firstSeen }}</div>
       </div>
     </div>
   </div>
-  <div class="body_content">
-    <div class="card">
-      <div class="card_logo">
-        <img src="http://surl.li/rsslm" class="card_photo"></img>
-      </div>
-      <div class="card_info">
-        <div>Squanchy</div>
-        <div>Alive - Gumanoid</div>
-        <br/>
-        <div>Last known location:</div>
-        <div>Earth</div>
-        <br/>
-        <div>First seen in:</div>
-        <div>Season 2</div>
-      </div>
-    </div>
-  </div>
+</div>
 </template>
+
+<script>
+export default{
+  props:{
+    cardInfo:{
+      type: Array,
+      required: true
+    }
+  },
+}
+</script>
 
 <style>
 .body_content {
