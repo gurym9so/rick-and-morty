@@ -10,10 +10,10 @@
         <div>{{ info.status }} - {{ info.species }}</div>
         <br/>
         <div>Last known location:</div>
-        <div>{{ info.location }}</div>
+        <div>{{ info.location.name }}</div>
         <br/>
         <div>First seen in:</div>
-        <div>{{ info.firstSeen }}</div>
+        <div>{{ info.origin.name}}</div>
       </div>
     </div>
   </div>
@@ -25,7 +25,6 @@ export default{
   props:{
     cardInfo:{
       type: Array,
-      required: true
     }
   },
 }

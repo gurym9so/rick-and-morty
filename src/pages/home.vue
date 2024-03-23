@@ -11,31 +11,28 @@
 
 <script>
 import Card from "@/components/Card.vue";
+import axios from "axios";
 export default {
   components: { Card },
   data() {
     return {
-      cardInfo: [
-        {
-          id: "1",
-          name: "Mr poopybutthole",
-          status: "Alive",
-          species: "Gumanoid",
-          location: "Earth",
-          firstSeen: "Season 1",
-          image: "http://surl.li/rssin",
-        },
-        {
-          id: "2",
-          name: "Squanchy",
-          status: "Alive",
-          species: "Gumanoid",
-          location: "Earth",
-          firstSeen: "Season 2",
-          image: "http://surl.li/rsslm",
-        },
-      ],
+      cardInfo: [],
     };
+  },
+  methods: {
+    async fetchHero() {
+      try {
+        const response = await axios.get(
+          "https://rickandmortyapi.com/api/character?limit=10"
+        );
+        this.cardInfo = response.data.results;
+      } catch (error) {
+        alert("Ошибка при получении данных");
+      }
+    },
+  },
+  mounted() {
+    this.fetchHero();
   },
 };
 </script>
