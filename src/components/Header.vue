@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header_wrapper">
-      <router-link to="/" class="logo">Logo</router-link>
+      <router-link to="/" class="logo">Rick and Morty</router-link>
       <div class="header_content">
         <router-link to="/about" class="logo">About</router-link>
       </div>
