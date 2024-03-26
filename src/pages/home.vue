@@ -4,9 +4,8 @@
       <div class="start_wrapper">
         <div class="body_start">The Rick and Morty API</div>
       </div>
-      <div class="filtered_form">
-        <form class="form"></form>
-      </div>
+      <br />
+      <FilteredForm :locationHero="locationHero" />
       <div>
         <Card :cardInfo="cardInfo" />
       </div>
@@ -17,13 +16,15 @@
 
 <script>
 import Card from "@/components/Card.vue";
+import FilteredForm from "@/components/FilteredForm.vue";
 import axios from "axios";
 export default {
-  components: { Card },
+  components: { Card, FilteredForm },
   data() {
     return {
       cardInfo: [],
       pageCount: 2,
+      locationHero: [],
     };
   },
   methods: {
@@ -33,6 +34,16 @@ export default {
           "https://rickandmortyapi.com/api/character/?page=1"
         );
         this.cardInfo = response.data.results;
+      } catch (error) {
+        alert("Ошибка при получении данных");
+      }
+    },
+    async fetchLocation() {
+      try {
+        const response = await axios.get(
+          "https://rickandmortyapi.com/api/location"
+        );
+        this.locationHero = response.data.results;
       } catch (error) {
         alert("Ошибка при получении данных");
       }
@@ -50,6 +61,7 @@ export default {
   },
   mounted() {
     this.fetchHero();
+    this.fetchLocation();
     var options = {
       rootMargin: "0px",
       threshold: 1.0,
@@ -83,15 +95,5 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
-}
-.filtered_form {
-  display: flex;
-  justify-content: center;
-  min-height: 40px;
-  background-color: lightgray;
-}
-.body_start {
-  padding-top: 20px;
-  font-size: 30px;
 }
 </style>
