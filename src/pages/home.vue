@@ -6,14 +6,16 @@
       </div>
       <br />
       <FilteredForm :locationHero="locationHero" />
-      <div>
-        <Card :cardInfo="cardInfo" />
-      </div>
+      <router-link
+        :to="{ name: 'infoAboutPers', params: { id: idHero } }"
+        class="link"
+      >
+        <Card :cardInfo="cardInfo" @getPersInCard="getPers" />
+      </router-link>
     </div>
   </div>
   <div ref="observer" class="observer"></div>
 </template>
-
 <script>
 import Card from "@/components/Card.vue";
 import FilteredForm from "@/components/FilteredForm.vue";
@@ -23,11 +25,16 @@ export default {
   data() {
     return {
       cardInfo: [],
+      cardTry: [],
       pageCount: 2,
       locationHero: [],
+      idHero: 0,
     };
   },
   methods: {
+    getPers(id) {
+      this.idHero = id;
+    },
     async fetchHero() {
       try {
         const response = await axios.get(
@@ -95,5 +102,9 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+.link {
+  color: black;
+  text-decoration: none;
 }
 </style>

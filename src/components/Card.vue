@@ -1,7 +1,7 @@
 <template>
 <div class="card_main">
   <div class="body_content" v-for="info in cardInfo">
-    <div class="card">
+    <div class="card" @click="getPers(info.id)">
       <div class="card_logo">
         <img :src="info.image" class="card_photo"></img>
       </div>
@@ -27,6 +27,11 @@ export default{
       type: Array,
     }
   },
+  methods:{
+    getPers(id){
+      this.$emit("getPersInCard", id)
+    }
+  }
 }
 </script>
 
@@ -53,5 +58,8 @@ export default{
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.id{
+  display: none;
 }
 </style>
