@@ -3,7 +3,13 @@
     <div class="form">
       <div class="nameFilter">
         <div class="form_text">По имени:</div>
-        <input type="text" placeholder="Имя персонажа" class="form_input" />
+        <input
+          type="text"
+          placeholder="Имя персонажа"
+          class="form_input"
+          v-model="nameInputValue"
+          @input="emitNameInputValue"
+        />
       </div>
       <div class="statusFilter">
         <div class="form_text">Статус:</div>
@@ -32,7 +38,17 @@
 export default {
   props: {
     locationHero: {
-      type: Array,
+      type: Object,
+    },
+  },
+  data() {
+    return {
+      nameInputValue: "",
+    };
+  },
+  methods: {
+    emitNameInputValue() {
+      this.$emit("update:nameInputValue", this.nameInputValue);
     },
   },
 };

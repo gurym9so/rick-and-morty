@@ -5,7 +5,10 @@
         <div class="body_start">The Rick and Morty API</div>
       </div>
       <br />
-      <FilteredForm :locationHero="locationHero" />
+      <FilteredForm
+        :locationHero="locationHero"
+        @update:nameInputValue="nameInputValue = $event"
+      />
       <router-link
         :to="{ name: 'infoAboutPers', params: { id: idHero } }"
         class="link"
@@ -24,11 +27,11 @@ export default {
   components: { Card, FilteredForm },
   data() {
     return {
-      cardInfo: [],
-      cardTry: [],
+      cardInfo: {},
       pageCount: 2,
-      locationHero: [],
+      locationHero: {},
       idHero: 0,
+      nameInputValue: "",
     };
   },
   methods: {

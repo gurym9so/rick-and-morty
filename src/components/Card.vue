@@ -1,7 +1,7 @@
 <template>
 <div class="card_main">
-  <div class="body_content" v-for="info in cardInfo">
-    <div class="card" @click="getPers(info.id)">
+  <div class="body_content" v-for="info in cardInfo" @click="getPers(info.id)">
+    <div class="card">
       <div class="card_logo">
         <img :src="info.image" class="card_photo"></img>
       </div>
@@ -24,7 +24,7 @@
 export default{
   props:{
     cardInfo:{
-      type: Array,
+      type: Object,
     }
   },
   methods:{
