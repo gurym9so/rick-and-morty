@@ -1,34 +1,39 @@
 <template>
   <div class="filtered_form">
     <div class="form">
-      <div class="nameFilter">
-        <div class="form_text">По имени:</div>
-        <input
-          type="text"
-          placeholder="Имя персонажа"
-          class="form_input"
-          v-model="nameInputValue"
-          @input="emitNameInputValue"
-        />
-      </div>
-      <div class="statusFilter">
-        <div class="form_text">Статус:</div>
-        <div class="checkbox_wrapper">
-          <div>
-            <input type="checkbox" />
-            <label>Живой</label>
-          </div>
-          <div>
-            <input type="checkbox" />
-            <label>Мертвый</label>
+      <div class="filter_for_form">
+        <div class="nameFilter">
+          <div class="form_text">По имени:</div>
+          <input
+            type="text"
+            placeholder="Имя персонажа"
+            class="form_input"
+            v-model="nameInputValue"
+            @input="emitNameInputValue"
+          />
+        </div>
+        <div class="statusFilter">
+          <div class="form_text">Статус:</div>
+          <div class="checkbox_wrapper">
+            <div>
+              <input type="checkbox" />
+              <label>Живой</label>
+            </div>
+            <div>
+              <input type="checkbox" />
+              <label>Мертвый</label>
+            </div>
           </div>
         </div>
+        <div class="genderFilter">
+          <div class="form_text">Место:</div>
+          <select class="form_input">
+            <option v-for="loc in locationHero">{{ loc.name }}</option>
+          </select>
+        </div>
       </div>
-      <div class="genderFilter">
-        <div class="form_text">Место:</div>
-        <select class="form_input">
-          <option v-for="loc in locationHero">{{ loc.name }}</option>
-        </select>
+      <div class="filtered_button">
+        <button @click="callMethodsForFiltr">Отфильтровать</button>
       </div>
     </div>
   </div>
@@ -50,6 +55,9 @@ export default {
     emitNameInputValue() {
       this.$emit("update:nameInputValue", this.nameInputValue);
     },
+    callMethodsForFiltr() {
+      this.$emit("callFiltr");
+    },
   },
 };
 </script>
@@ -63,10 +71,17 @@ export default {
 }
 .form {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+.filter_for_form {
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 80%;
+  width: 100%;
 }
 .statusFilter {
   display: flex;
@@ -77,6 +92,9 @@ export default {
   display: flex;
   flex-direction: row;
   gap: 5px;
+}
+.filtered_button {
+  padding: 10px 0 10px 15px;
 }
 .form_text {
   padding-bottom: 5px;

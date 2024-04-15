@@ -8,12 +8,18 @@
       <FilteredForm
         :locationHero="locationHero"
         @update:nameInputValue="nameInputValue = $event"
+        @callFiltr="handleClick"
       />
       <router-link
         :to="{ name: 'infoAboutPers', params: { id: idHero } }"
         class="link"
       >
-        <Card :cardInfo="cardInfo" @getPersInCard="getPers" />
+        <Card
+          :cardInfo="cardInfo"
+          @getPersInCard="getPers"
+          v-if="showCard === false"
+        />
+        <FilteredCard :filteredCardInfo="filteredCardInfo" v-else />
       </router-link>
     </div>
   </div>
@@ -23,20 +29,29 @@
 import Card from "@/components/Card.vue";
 import FilteredForm from "@/components/FilteredForm.vue";
 import axios from "axios";
+import FilteredCard from "@/components/FilteredCard.vue";
+
 export default {
-  components: { Card, FilteredForm },
+  components: { Card, FilteredForm, FilteredCard },
   data() {
     return {
       cardInfo: {},
+      filteredCardInfo: {},
       pageCount: 2,
       locationHero: {},
       idHero: 0,
       nameInputValue: "",
+      showCard: false,
     };
   },
   methods: {
     getPers(id) {
       this.idHero = id;
+    },
+    handleClick() {
+      console.log("gggg");
+      this.fetchFilteredByNameHero();
+      this.showCard = true;
     },
     async fetchHero() {
       try {
@@ -44,6 +59,16 @@ export default {
           "https://rickandmortyapi.com/api/character/?page=1"
         );
         this.cardInfo = response.data.results;
+      } catch (error) {
+        alert("Ошибка при получении данных");
+      }
+    },
+    async fetchFilteredByNameHero() {
+      try {
+        const response = await axios.get(
+          `https://rickandmortyapi.com/api/character/?name=${this.nameInputValue}`
+        );
+        this.filteredCardInfo = response.data.results;
       } catch (error) {
         alert("Ошибка при получении данных");
       }
